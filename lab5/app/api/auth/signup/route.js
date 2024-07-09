@@ -5,21 +5,20 @@ const prisma = new PrismaClient();
 
 export async function POST(req) {
   try {
-    const { email, name, password } = await req.json();
-    const hashPassword = hashSync(password, 10);
+    const { name, email, password } = await req.json();
+    const hashedPass = hashSync(password, 10);
     const newUser = await prisma.user.create({
       data: {
-        email,
         name,
-        password: hashPassword,
+        email,
+        password: hashedPass,
       },
     });
     return Response.json({
-      msg: "User created successfully",
-      newUser,
+      mgs: "user created!",
+      data: newUser,
     });
-  } 
-  catch (err) {
+  } catch (err) {
     return Response.json(err, { status: 500 });
   }
 }

@@ -16,13 +16,13 @@ export default function Profile() {
   return (
     status === "authenticated" &&
     session.user && (
+    <div>
       <div>
-        <div>
-          <p>Welcome, {session.user.name}</p>
-          <p>Email: {session.user.email}</p>
-          <button onClick={() => signOut({ callbackUrl: "/" })}>Logout</button>
-        </div>
+        <p>Welcome, {session.user.name}</p>
+        <p>Email: {session.user.email}</p>
+        <button onClick={() => signOut({ callbackUrl: "/" })}>Logout</button>
       </div>
+    </div>
     )
   );
 }
